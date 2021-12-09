@@ -1,13 +1,13 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 
-// import { Container } from './styles';
+import { Container } from './styles';
 
 function Home() {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Container>
       <Text>Home Screen</Text>
-    </View>
+    </Container>
   );
 }
 
