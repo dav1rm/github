@@ -16,9 +16,14 @@ export const Image = styled.Image`
   width: 100px;
 `;
 
-export const TextButton = styled.Text`
-  font-family: 'Mulish-Regular';
-  font-size: 16px;
-  line-height: 20px;
-  color: #fff;
+export const Avatar = styled.Image`
+  height: 32px;
+  width: 32px;
+  border-radius: 100px;
 `;
+
+export const Left = styled.View``;
+
+export const Center = styled.View``;
+
+export const Right = styled.View``;
