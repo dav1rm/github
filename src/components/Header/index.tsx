@@ -1,10 +1,11 @@
 import React from 'react';
+import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'react-native';
 import logo from '../../assets/images/logo.png';
 import Button from '../Button';
 import { Container, Image } from './styles';
 
-const Header: React.FC = () => {
+const Header: React.FC<NativeStackHeaderProps> = () => {
   return (
     <>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
