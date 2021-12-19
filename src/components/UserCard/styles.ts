@@ -67,15 +67,3 @@ export const FooterItem = styled.View<FooterItemProps>`
   flex-direction: row;
   margin-right: ${({ isLast }) => (isLast ? 0 : 16)}px;
 `;
-
-interface ActionButtonProps {
-  isLast?: boolean;
-}
-export const ActionButton = styled.TouchableOpacity<ActionButtonProps>`
-  width: 24px;
-  height: 24px;
-  align-items: center;
-  justify-content: center;
-  background-color: #e8e8e8;
-  border-radius: 100px;
-`;
