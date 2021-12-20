@@ -1,9 +1,11 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 interface ContainerProps {
   height?: number;
   width?: number;
   color?: string;
+  rounded?: boolean;
+  hasShadow?: boolean;
 }
 
 export const Container = styled.TouchableOpacity.attrs({
@@ -14,7 +16,13 @@ export const Container = styled.TouchableOpacity.attrs({
   align-items: center;
   justify-content: center;
   background-color: ${({ color }) => color ?? '#e8e8e8'};
-  border-radius: 100px;
+  border-radius: ${({ rounded }) => (rounded ? 100 : 4)}px;
+  ${({ hasShadow }) =>
+    hasShadow &&
+    css`
+      border: none;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+    `};
 `;
 
 export const TextButton = styled.Text`
