@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RepositoryCard from '../../components/RepositoryCard';
 import SearchBar from '../../components/SearchBar';
+import TagsModal from '../../components/TagsModal';
 
 import { Separator } from '../Login/styles';
 import { Container, FlatList } from './styles';
 
 function Repositories() {
+  const [modalVisible, setModalVisible] = useState(false);
+
   const RepositoriesMock = [
     {
       id: 1,
@@ -46,8 +49,13 @@ function Repositories() {
         data={RepositoriesMock}
         ItemSeparatorComponent={() => <Separator height={8} />}
         renderItem={({ item }) => (
-          <RepositoryCard repo={item} onPress={() => null} />
+          <RepositoryCard repo={item} onPress={() => setModalVisible(true)} />
         )}
+      />
+      <TagsModal
+        visible={modalVisible}
+        title="Adicionar tags"
+        onRequestClose={() => setModalVisible(false)}
       />
     </Container>
   );
