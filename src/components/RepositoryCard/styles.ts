@@ -64,19 +64,3 @@ export const TagList = styled.View`
   align-items: center;
   margin-bottom: 16px;
 `;
-
-export const TagContainer = styled.View`
-  height: 20px;
-  padding: 3px 16px;
-  background: rgba(0, 0, 0, 0.08);
-  border-radius: 100px;
-  margin-right: 8px;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const TagText = styled.Text`
-  font-family: 'Mulish-Regular';
-  font-size: 12px;
-  line-height: 15px;
-`;

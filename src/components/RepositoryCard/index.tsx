@@ -1,6 +1,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import ActionButton from '../ActionButton';
+import Tag from '../Tag';
 import {
   Container,
   Title,
@@ -12,8 +13,6 @@ import {
   HeaderContent,
   HeaderInfo,
   TagList,
-  TagContainer,
-  TagText,
 } from './styles';
 
 interface RepositoryCardProps {
@@ -63,9 +62,7 @@ const RepositoryCard: React.FC<RepositoryCardProps> = ({ repo, onPress }) => {
 
       <TagList>
         {repo.tags.map((tag: string) => (
-          <TagContainer key={tag}>
-            <TagText>#{tag}</TagText>
-          </TagContainer>
+          <Tag small key={tag} label={`#${tag}`} />
         ))}
         <ActionButton
           onPress={() => null}
