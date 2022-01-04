@@ -6,9 +6,11 @@ interface ContainerProps {
 export const Container = styled.View<ContainerProps>`
   flex-direction: row;
   padding: 3px 16px;
+  height: ${({ small }) => (small ? 22 : 26)}px;
   background: rgba(0, 0, 0, 0.08);
   border-radius: 100px;
   margin-right: 8px;
+  margin-bottom: 8px;
   align-items: center;
   justify-content: center;
 `;
