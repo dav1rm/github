@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import ActionButton from '../ActionButton';
 import Input from '../Input';
 import Tag from '../Tag';
-import { BarContainer, Container, Separator, TagsContainer } from './styles';
+import {
+  Container,
+  BarContainer,
+  InputContainer,
+  Separator,
+  TagsContainer,
+} from './styles';
 
 interface SearchBarProps {}
 
@@ -27,14 +33,16 @@ const SearchBar: React.FC<SearchBarProps> = () => {
             <Separator width={8} />
           </>
         )}
-        <Input
-          background="#fff"
-          icon={type === 'search' ? 'search' : 'filter-list'}
-          placeholder={`${
-            type === 'search' ? 'Buscar' : 'Filtrar'
-          } um repositório...`}
-          hasShadow
-        />
+        <InputContainer>
+          <Input
+            background="#fff"
+            icon={type === 'search' ? 'search' : 'filter-list'}
+            placeholder={`${
+              type === 'search' ? 'Buscar' : 'Filtrar'
+            } um repositório...`}
+            hasShadow
+          />
+        </InputContainer>
         {type === 'search' && (
           <>
             <Separator width={8} />

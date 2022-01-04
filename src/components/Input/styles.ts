@@ -12,7 +12,7 @@ export const Container = styled.View<ContainerProps>`
   border: 1px solid #e5e5e5;
   border-radius: 4px;
   padding: 8px;
-  flex: 1;
+  width: 100%;
   background: ${props => props.background ?? 'transparent'};
   ${({ hasShadow }) =>
     hasShadow &&

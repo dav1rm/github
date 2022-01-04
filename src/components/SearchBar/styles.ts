@@ -9,6 +9,10 @@ export const BarContainer = styled.View`
   align-items: center;
 `;
 
+export const InputContainer = styled.View`
+  flex: 1;
+`;
+
 export const TagsContainer = styled.ScrollView`
   padding: 8px 16px;
   padding-bottom: 0;
