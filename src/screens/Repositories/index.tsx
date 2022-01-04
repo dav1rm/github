@@ -1,5 +1,6 @@
 import React from 'react';
 import RepositoryCard from '../../components/RepositoryCard';
+import SearchBar from '../../components/SearchBar';
 
 import { Separator } from '../Login/styles';
 import { Container, FlatList } from './styles';
@@ -40,6 +41,7 @@ function Repositories() {
 
   return (
     <Container>
+      <SearchBar />
       <FlatList
         data={RepositoriesMock}
         ItemSeparatorComponent={() => <Separator height={8} />}
