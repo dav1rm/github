@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 import ActionButton from '../ActionButton';
 import Tag from '../Tag';
 import {
@@ -36,7 +37,9 @@ const RepositoryCard: React.FC<RepositoryCardProps> = ({ repo, onPress }) => {
     },
     {
       icon: 'access-time',
-      label: new Date(repo.lastCommit).toDateString(),
+      label: formatDistanceToNowStrict(new Date(repo.lastCommit), {
+        unit: 'day',
+      }),
     },
   ];
 
