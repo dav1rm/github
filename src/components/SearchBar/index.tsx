@@ -60,11 +60,13 @@ const SearchBar: React.FC<SearchBarProps> = () => {
           </>
         )}
       </BarContainer>
-      <TagsContainer horizontal>
-        {['Front End', 'Java', 'C#'].map((tag: string) => (
-          <Tag label={tag} key={tag} type="add" onPress={() => null} />
-        ))}
-      </TagsContainer>
+      {type === 'filter' && (
+        <TagsContainer horizontal>
+          {['Front End', 'Java', 'C#'].map((tag: string) => (
+            <Tag label={tag} key={tag} type="add" onPress={() => null} />
+          ))}
+        </TagsContainer>
+      )}
     </Container>
   );
 };
