@@ -1,10 +1,8 @@
 import React from 'react';
-import { Container, TextInput, IconInput } from './styles';
+import { TextInputProps } from 'react-native';
+import { Container, StyledTextInput, IconInput } from './styles';
 
-interface InputProps {
-  onChangeText?: (text: string) => void;
-  value?: string;
-  placeholder?: string;
+interface InputProps extends TextInputProps {
   icon?: string;
   background?: string;
   hasShadow?: boolean;
@@ -12,20 +10,14 @@ interface InputProps {
 
 const Input: React.FC<InputProps> = ({
   icon,
-  placeholder,
-  onChangeText,
-  value,
   background,
   hasShadow,
+  ...rest
 }) => {
   return (
     <Container background={background} hasShadow={hasShadow}>
       {icon && <IconInput name={icon} size={24} color="#E5E5E5" />}
-      <TextInput
-        placeholder={placeholder}
-        onChangeText={onChangeText}
-        value={value}
-      />
+      <StyledTextInput {...rest} />
     </Container>
   );
 };

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { TextInput } from 'react-native';
 
 interface ContainerProps {
   background?: string;
@@ -22,7 +23,7 @@ export const Container = styled.View<ContainerProps>`
     `};
 `;
 
-export const TextInput = styled.TextInput`
+export const StyledTextInput = styled(TextInput)`
   flex: 1;
   font-family: 'Mulish-Regular';
 `;
