@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { User } from '../../services/graphql/queries/getUserInfo';
 import ActionButton from '../ActionButton';
 import {
   Container,
@@ -15,39 +16,44 @@ import {
 } from './styles';
 
 interface UserCardProps {
-  user: any;
+  user: User;
   onPress: () => void;
+  onDeletePress: () => void;
 }
 
-const UserCard: React.FC<UserCardProps> = ({ user, onPress }) => {
+const UserCard: React.FC<UserCardProps> = ({
+  user,
+  onPress,
+  onDeletePress,
+}) => {
   const footerInfos = [
     {
       icon: 'business',
-      label: user.company,
+      label: user.company || 'Nenhuma',
     },
     {
       icon: 'place',
-      label: user.address,
+      label: user.location,
     },
     {
       icon: 'star',
-      label: user.stars,
+      label: user.starredRepositories?.totalCount || 0,
     },
   ];
 
   return (
     <Container onPress={onPress}>
       <Header>
-        <Avatar source={{ uri: user.avatar_url }} />
+        <Avatar source={{ uri: user.avatarUrl }} />
         <HeaderContent>
           <HeaderInfo>
             <Title>{user.name}</Title>
             <Icon name="keyboard-arrow-right" size={24} color="#000" />
           </HeaderInfo>
-          <Description>{user.username}</Description>
+          <Description>{user.login}</Description>
         </HeaderContent>
         <ActionButton
-          onPress={() => null}
+          onPress={onDeletePress}
           iconName="delete"
           iconSize={18}
           iconColor="#000"
