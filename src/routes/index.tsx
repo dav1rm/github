@@ -1,31 +1,15 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import UsersScreen from '../screens/Users';
-import RepositoriesScreen from '../screens/Repositories';
-import LoginScreen from '../screens/Login';
-import Header from '../components/Header';
-
-const Stack = createNativeStackNavigator();
+import { useStorage } from '../hooks/storage';
+import Loading from '../components/Loading';
+import { AppRoutes } from './app.routes';
+import { AuthRoutes } from './auth.routes';
 
 export function Routes() {
-  return (
-    <Stack.Navigator initialRouteName="RepositoriesScreen">
-      <Stack.Screen
-        name="LoginScreen"
-        component={LoginScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="UsersScreen"
-        component={UsersScreen}
-        options={{ header: props => <Header {...props} /> }}
-      />
-      <Stack.Screen
-        name="RepositoriesScreen"
-        component={RepositoriesScreen}
-        options={{ header: props => <Header {...props} /> }}
-      />
-    </Stack.Navigator>
-  );
+  const { loading, users } = useStorage();
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  return users?.length > 0 ? <AppRoutes /> : <AuthRoutes />;
 }
