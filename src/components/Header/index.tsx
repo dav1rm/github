@@ -1,18 +1,29 @@
 import React from 'react';
-import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'react-native';
+import { NativeStackHeaderProps } from '@react-navigation/native-stack';
+import { User } from '../../services/graphql/queries/getUserInfo';
 import logo from '../../assets/images/logo.png';
 import Button from '../Button';
-import { Center, Container, Image, Avatar, Left, Right } from './styles';
 import ActionButton from '../ActionButton';
+import { Center, Container, Image, Avatar, Left, Right } from './styles';
 
-const Header: React.FC<NativeStackHeaderProps> = ({ back, navigation }) => {
+interface RouteParams {
+  user?: User;
+}
+
+const Header: React.FC<NativeStackHeaderProps> = ({
+  back,
+  navigation,
+  route,
+}) => {
+  const params: RouteParams | undefined = route.params;
+
   return (
     <>
       <StatusBar backgroundColor="#fff" barStyle="dark-content" />
       <Container>
         <Left>
-          {back ? (
+          {back && (
             <ActionButton
               onPress={navigation.goBack}
               iconName="arrow-back"
@@ -22,18 +33,19 @@ const Header: React.FC<NativeStackHeaderProps> = ({ back, navigation }) => {
               bgColor="transparent"
               iconColor="#000"
             />
-          ) : (
-            <Image source={logo} />
           )}
+          {route.name === 'Users' && <Image source={logo} />}
         </Left>
         <Center />
         <Right>
-          <Avatar
-            source={{
-              uri: 'https://avatars.githubusercontent.com/u/6731139?v=4',
-            }}
-          />
-          {/* <Button height={32} label="Adicionar novo" onPress={() => null} /> */}
+          {params?.user && <Avatar source={{ uri: params?.user?.avatarUrl }} />}
+          {route.name === 'Users' && (
+            <Button
+              height={32}
+              label="Adicionar novo"
+              onPress={() => navigation.navigate('AddUser')}
+            />
+          )}
         </Right>
       </Container>
     </>
