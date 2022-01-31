@@ -1,4 +1,5 @@
 import React from 'react';
+import { Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 import ActionButton from '../ActionButton';
@@ -15,36 +16,50 @@ import {
   HeaderInfo,
   TagList,
 } from './styles';
+import { Repository } from '../../services/graphql/queries/getUserRepositories';
 
 interface RepositoryCardProps {
-  repo: any;
-  onPress: () => void;
+  repo: Repository;
+  onEditTech: () => void;
 }
 
-const RepositoryCard: React.FC<RepositoryCardProps> = ({ repo, onPress }) => {
+const RepositoryCard: React.FC<RepositoryCardProps> = ({
+  repo,
+  onEditTech,
+}) => {
   const footerInfos = [
     {
       icon: 'language',
-      label: repo.language,
+      label: repo.primaryLanguage?.name || 'Não definido',
     },
     {
       icon: 'star',
-      label: repo.stars,
+      label: repo.stargazerCount,
     },
     {
       icon: 'supervisor-account',
-      label: repo.users,
+      label: repo.assignableUsers.totalCount,
     },
     {
       icon: 'access-time',
-      label: formatDistanceToNowStrict(new Date(repo.lastCommit), {
-        unit: 'day',
-      }),
+      label: formatDistanceToNowStrict(new Date(repo.createdAt)),
     },
   ];
 
+  const handleOpenLink = () => {
+    if (!repo?.url) {
+      return;
+    }
+
+    Linking.canOpenURL(repo.url).then(async canOpen => {
+      if (canOpen) {
+        await Linking.openURL(repo.url);
+      }
+    });
+  };
+
   return (
-    <Container onPress={onPress}>
+    <Container onPress={handleOpenLink}>
       <Header>
         <HeaderContent>
           <HeaderInfo>
@@ -60,15 +75,17 @@ const RepositoryCard: React.FC<RepositoryCardProps> = ({ repo, onPress }) => {
           />
         </HeaderContent>
 
-        <Description>{repo.description}</Description>
+        <Description numberOfLines={2}>
+          {repo.description || 'Nenhuma descrição cadastrada.'}
+        </Description>
       </Header>
 
       <TagList>
-        {repo.tags.map((tag: string) => (
-          <Tag small key={tag} label={`#${tag}`} />
+        {repo.languages.nodes.map(({ name }) => (
+          <Tag small key={name} label={`#${name}`} />
         ))}
         <ActionButton
-          onPress={() => null}
+          onPress={onEditTech}
           iconName="edit"
           height={20}
           width={20}

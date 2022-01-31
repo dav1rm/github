@@ -1,57 +1,100 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLazyQuery } from '@apollo/client';
+import { useRoute } from '@react-navigation/native';
+import Loading from '../../components/Loading';
 import RepositoryCard from '../../components/RepositoryCard';
-import SearchBar from '../../components/SearchBar';
+import SearchBar, { SearchInputType } from '../../components/SearchBar';
 import TagsModal from '../../components/TagsModal';
-
+import { RouteRepositoriesProp } from '../../routes/types';
+import { GET_USER_REPOSITORIES } from '../../services/graphql/queries';
+import { Repository } from '../../services/graphql/queries/getUserRepositories';
 import { Separator } from '../Login/styles';
-import { Container, FlatList } from './styles';
+import { Container, EmptyContainer, EmptyText, ReposList } from './styles';
 
 function Repositories() {
+  const [term, setTerm] = useState('');
+  const [inputType, setInputType] = useState<SearchInputType>('search');
+  const [repos, setRepos] = useState<Repository[]>();
+  const [filteredRepos, setFilteredRepos] = useState<Repository[]>();
+  const [loadingRepos, setLoadingRepos] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
 
-  const RepositoriesMock = [
-    {
-      id: 1,
-      name: 'project-name-java',
-      description: 'Project application with component app with React Native.',
-      language: 'React Native',
-      stars: 2,
-      users: 5,
-      lastCommit: new Date(),
-      tags: ['JavaScript', 'Front End'],
-    },
-    {
-      id: 2,
-      name: 'project-name-java',
-      description: 'Project application with component app with React Native.',
-      language: 'React Native',
-      stars: 2,
-      users: 5,
-      lastCommit: new Date(),
-      tags: ['JavaScript', 'Front End'],
-    },
-    {
-      id: 3,
-      name: 'project-name-java',
-      description: 'Project application with component app with React Native.',
-      language: 'React Native',
-      stars: 2,
-      users: 5,
-      lastCommit: new Date(),
-      tags: ['JavaScript', 'Front End'],
-    },
-  ];
+  const { params } = useRoute<RouteRepositoriesProp>();
+
+  const [getUserRepositories, { data, loading, error }] = useLazyQuery(
+    GET_USER_REPOSITORIES,
+  );
+
+  useEffect(() => {
+    getUserRepositories({ variables: { username: params?.user?.login } });
+
+    if (!loading && !error && !!data?.repositoryOwner) {
+      setRepos(data?.repositoryOwner.repositories?.nodes);
+      setFilteredRepos(data?.repositoryOwner.repositories?.nodes);
+      setLoadingRepos(false);
+    }
+  }, [data, error, getUserRepositories, loading, params?.user?.login]);
+
+  if (loading || loadingRepos) {
+    return <Loading />;
+  }
+
+  const handleInputChange = (text: string) => {
+    filterRepos(text);
+    setTerm(text);
+  };
+
+  const handleTypeChange = (text: SearchInputType) => {
+    setTerm('');
+    setInputType(text);
+  };
+
+  const filterRepos = (value: string) => {
+    if (repos && repos?.length > 0 && inputType === 'search') {
+      if (value !== '') {
+        const hasTermInName = (repo: Repository) =>
+          repo.name.search(new RegExp(value, 'i')) !== -1;
+        setFilteredRepos(repos.filter(hasTermInName));
+      } else {
+        setFilteredRepos(repos);
+      }
+    }
+  };
+
+  const renderEmptyMessage = () => {
+    const message =
+      term !== ''
+        ? `Nenhum resultado encontrado para '${term}'`
+        : 'Nenhum repositório encontrado';
+
+    return (
+      <EmptyContainer>
+        <EmptyText>{message}</EmptyText>
+      </EmptyContainer>
+    );
+  };
 
   return (
     <Container>
-      <SearchBar />
-      <FlatList
-        data={RepositoriesMock}
+      <SearchBar
+        value={term}
+        type={inputType}
+        onChangeType={handleTypeChange}
+        onChangeText={handleInputChange}
+      />
+
+      <ReposList
+        data={filteredRepos}
         ItemSeparatorComponent={() => <Separator height={8} />}
         renderItem={({ item }) => (
-          <RepositoryCard repo={item} onPress={() => setModalVisible(true)} />
+          <RepositoryCard
+            repo={item}
+            onEditTech={() => setModalVisible(true)}
+          />
         )}
+        ListEmptyComponent={renderEmptyMessage}
       />
+
       <TagsModal
         visible={modalVisible}
         title="Adicionar tags"

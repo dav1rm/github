@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ActionButton from '../ActionButton';
 import Input from '../Input';
 import Tag from '../Tag';
@@ -10,17 +10,33 @@ import {
   TagsContainer,
 } from './styles';
 
-interface SearchBarProps {}
+export type SearchInputType = 'filter' | 'search';
 
-const SearchBar: React.FC<SearchBarProps> = () => {
-  const [type, setType] = useState('search');
+interface SearchBarProps {
+  value: string;
+  type: SearchInputType;
+  onChangeText: (value: string) => void;
+  onChangeType: (type: SearchInputType) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({
+  value,
+  type,
+  onChangeType,
+  onChangeText,
+}) => {
+  const placeholder =
+    type === 'search'
+      ? 'Buscar um repositório pelo nome...'
+      : 'Filtrar por uma tecnologia...';
+
   return (
     <Container>
       <BarContainer>
         {type === 'filter' && (
           <>
             <ActionButton
-              onPress={() => setType('search')}
+              onPress={() => onChangeType('search')}
               iconName="search"
               height={40}
               width={48}
@@ -37,10 +53,12 @@ const SearchBar: React.FC<SearchBarProps> = () => {
           <Input
             background="#fff"
             icon={type === 'search' ? 'search' : 'filter-list'}
-            placeholder={`${
-              type === 'search' ? 'Buscar' : 'Filtrar'
-            } um repositório...`}
+            placeholder={placeholder}
             hasShadow
+            autoCorrect={false}
+            autoCapitalize="none"
+            onChangeText={onChangeText}
+            value={value}
           />
         </InputContainer>
         {type === 'search' && (
@@ -50,7 +68,7 @@ const SearchBar: React.FC<SearchBarProps> = () => {
               height={40}
               width={48}
               iconSize={24}
-              onPress={() => setType('filter')}
+              onPress={() => onChangeType('filter')}
               iconName="filter-list"
               iconColor="#7E7E7E"
               bgColor="#fff"
