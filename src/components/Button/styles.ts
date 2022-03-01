@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 interface ContainerProps {
   height?: number;
@@ -25,8 +24,4 @@ export const TextButton = styled.Text<TextButtonProps>`
   font-size: 16px;
   line-height: 20px;
   color: ${({ light }) => (light ? '#000' : '#fff')};
-`;
-
-export const IconInput = styled(Icon)`
-  margin: 0 8px;
 `;
