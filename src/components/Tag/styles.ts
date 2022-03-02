@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 
 interface ContainerProps {
   small?: boolean;
+  hasSpace?: boolean;
 }
 export const Container = styled.View<ContainerProps>`
   flex-direction: row;
@@ -10,7 +11,7 @@ export const Container = styled.View<ContainerProps>`
   background: rgba(0, 0, 0, 0.08);
   border-radius: 100px;
   margin-right: 8px;
-  margin-bottom: 8px;
+  margin-bottom: ${({ hasSpace }) => (hasSpace ? 8 : 0)}px;
   align-items: center;
   justify-content: center;
 `;

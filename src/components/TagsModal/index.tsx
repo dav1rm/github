@@ -41,7 +41,13 @@ const TagsModal: React.FC<TagsModalProps> = ({
           <Separator height={8} />
           <TagsContainer>
             {['Front End', 'Java', 'C#'].map((tag: string) => (
-              <Tag label={tag} key={tag} type="add" onPress={() => null} />
+              <Tag
+                label={tag}
+                key={tag}
+                hasSpace
+                type="add"
+                onPress={() => null}
+              />
             ))}
           </TagsContainer>
 
@@ -54,7 +60,13 @@ const TagsModal: React.FC<TagsModalProps> = ({
           <TagsContainer>
             {['Front End', 'IOS', 'Java Script', 'Android', 'Java', 'C#'].map(
               (tag: string) => (
-                <Tag label={tag} key={tag} type="add" onPress={() => null} />
+                <Tag
+                  label={tag}
+                  key={tag}
+                  hasSpace
+                  type="add"
+                  onPress={() => null}
+                />
               ),
             )}
           </TagsContainer>

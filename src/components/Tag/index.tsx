@@ -8,16 +8,18 @@ interface TagProps {
   onPress?: () => void;
   type?: 'close' | 'add';
   small?: boolean;
+  hasSpace?: boolean;
 }
 
 const Tag: React.FC<TagProps> = ({
   label,
   onPress,
   small = false,
+  hasSpace = false,
   type = 'add',
 }) => {
   return (
-    <Container small={small}>
+    <Container small={small} hasSpace={hasSpace}>
       <Text small={small}>{label}</Text>
       {onPress && (
         <>

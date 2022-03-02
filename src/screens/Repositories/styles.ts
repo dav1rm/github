@@ -10,7 +10,7 @@ export const Container = styled.SafeAreaView`
 export const ReposList = styled(
   FlatList as new () => FlatList<Repository>,
 ).attrs({
-  contentContainerStyle: { paddingHorizontal: 16, paddingBottom: 8 },
+  contentContainerStyle: { paddingHorizontal: 16, paddingVertical: 8 },
 })<FlatListProps<Repository>>`
   flex: 1;
 `;
