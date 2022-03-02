@@ -17,7 +17,7 @@ const Input: React.FC<InputProps> = ({
   return (
     <Container background={background} hasShadow={hasShadow}>
       {icon && <IconInput name={icon} size={24} color="#E5E5E5" />}
-      <StyledTextInput {...rest} />
+      <StyledTextInput placeholderTextColor={'#7E7E7E'} {...rest} />
     </Container>
   );
 };

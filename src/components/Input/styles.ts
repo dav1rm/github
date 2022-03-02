@@ -12,7 +12,7 @@ export const Container = styled.View<ContainerProps>`
   max-height: 40px;
   border: 1px solid #e5e5e5;
   border-radius: 4px;
-  padding: 8px;
+  padding: 0 8px;
   width: 100%;
   background: ${props => props.background ?? 'transparent'};
   ${({ hasShadow }) =>
@@ -24,10 +24,13 @@ export const Container = styled.View<ContainerProps>`
 `;
 
 export const StyledTextInput = styled(TextInput)`
+  padding: 0;
   flex: 1;
   font-family: 'Mulish-Regular';
+  font-size: 14px;
+  color: #000;
 `;
 
 export const IconInput = styled(Icon)`
-  margin: 0 8px;
+  margin: 8px;
 `;
