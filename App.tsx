@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { GITHUB_TOKEN } from '@env';
 import { Routes } from './src/routes';
 import AppProvider from './src/hooks';
 
@@ -9,7 +10,7 @@ const client = new ApolloClient({
   uri: 'https://api.github.com/graphql',
   cache: new InMemoryCache(),
   headers: {
-    authorization: 'Bearer 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',
+    authorization: `Bearer ${GITHUB_TOKEN}`,
   },
 });
 
