@@ -1,12 +1,9 @@
 import React from 'react';
-import ActionButton from '../ActionButton';
-import Input from '../Input';
-import Tag from '../Tag';
+import { ActionButton, Input, Tag, Separator } from '..';
 import {
   Container,
   BarContainer,
   InputContainer,
-  Separator,
   TagsContainer,
 } from './styles';
 

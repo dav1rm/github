@@ -1,16 +1,8 @@
 import React from 'react';
 import { Modal } from 'react-native';
-import Button from '../Button';
-import Input from '../Input';
-import Tag from '../Tag';
-import {
-  Container,
-  TagsContainer,
-  Title,
-  Content,
-  Separator,
-  Subtitle,
-} from './styles';
+
+import { Button, Input, Tag, Separator } from '..';
+import { Container, TagsContainer, Title, Content, Subtitle } from './styles';
 
 interface TagsModalProps {
   visible: boolean;

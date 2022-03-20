@@ -1,6 +1,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { User } from '../../services/graphql/queries/getUserInfo';
+
+import { User } from '~/services/graphql/queries';
 import ActionButton from '../ActionButton';
 import {
   Container,

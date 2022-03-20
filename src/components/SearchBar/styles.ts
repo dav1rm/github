@@ -20,13 +20,3 @@ export const TagsContainer = styled.ScrollView`
   padding-bottom: 0;
   margin-top: 8px;
 `;
-
-interface SeparatorProps {
-  height?: number;
-  width?: number;
-}
-
-export const Separator = styled.View<SeparatorProps>`
-  height: ${({ height }) => height || 24}px;
-  width: ${({ width }) => width || 24}px;
-`;

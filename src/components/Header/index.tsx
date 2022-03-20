@@ -1,10 +1,10 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
-import { User } from '../../services/graphql/queries/getUserInfo';
-import logo from '../../assets/images/logo.png';
-import Button from '../Button';
-import ActionButton from '../ActionButton';
+
+import logo from '~/assets/images/logo.png';
+import { User } from '~/services/graphql/queries';
+import { ActionButton, Button } from '..';
 import { Center, Container, Image, Avatar, Left, Right } from './styles';
 
 interface RouteParams {

@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { useRoute } from '@react-navigation/native';
-import Loading from '../../components/Loading';
-import RepositoryCard from '../../components/RepositoryCard';
-import SearchBar, { SearchInputType } from '../../components/SearchBar';
-import TagsModal from '../../components/TagsModal';
-import { RouteRepositoriesProp } from '../../routes/types';
-import { GET_USER_REPOSITORIES } from '../../services/graphql/queries';
-import { Repository } from '../../services/graphql/queries/getUserRepositories';
-import { Separator } from '../Login/styles';
+
+import {
+  Loading,
+  RepositoryCard,
+  SearchBar,
+  TagsModal,
+  Separator,
+} from '~/components';
+import { RouteRepositoriesProp } from '~/routes/types';
+import { SearchInputType } from '~/components/SearchBar';
+import { GET_USER_REPOSITORIES, Repository } from '~/services/graphql/queries';
 import { Container, EmptyContainer, EmptyText, ReposList } from './styles';
 
 function Repositories() {

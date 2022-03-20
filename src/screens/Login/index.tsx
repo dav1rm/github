@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
-import logo from '../../assets/images/logo.png';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
-
 import { useNavigation } from '@react-navigation/native';
-import { useStorage } from '../../hooks/storage';
-import { LoginScreenProp } from '../../routes/types';
-import { GET_USER_INFO } from '../../services/graphql/queries';
+
+import { Input, Button, Separator } from '~/components';
+import { useStorage } from '~/hooks/storage';
+import { LoginScreenProp } from '~/routes/types';
+import { GET_USER_INFO } from '~/services/graphql/queries';
+import logo from '~/assets/images/logo.png';
 import {
   Container,
   Content,
@@ -16,7 +15,6 @@ import {
   Title,
   Description,
   Label,
-  Separator,
 } from './styles';
 
 function Login() {

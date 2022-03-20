@@ -1,6 +1,6 @@
 import React from 'react';
-import ActionButton from '../ActionButton';
-import { Separator } from '../SearchBar/styles';
+
+import { ActionButton, Separator } from '..';
 import { Container, Text } from './styles';
 
 interface TagProps {

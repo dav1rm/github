@@ -1,6 +1,7 @@
 import { RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { User } from '../services/graphql/queries/getUserInfo';
+
+import { User } from '~/services/graphql/queries';
 
 export type RootStackParamList = {
   Users: undefined;

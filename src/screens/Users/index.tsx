@@ -1,12 +1,11 @@
 import React from 'react';
-import UserCard from '../../components/UserCard';
-import { Separator } from '../Login/styles';
-import { Container, UsersList } from './styles';
 import { useNavigation } from '@react-navigation/native';
-import { useStorage } from '../../hooks/storage';
-import { usersScreenProp } from '../../routes/types';
-import Loading from '../../components/Loading';
-import { User } from '../../services/graphql/queries/getUserInfo';
+
+import { UserCard, Loading, Separator } from '~/components';
+import { useStorage } from '~/hooks/storage';
+import { usersScreenProp } from '~/routes/types';
+import { User } from '~/services/graphql/queries';
+import { Container, UsersList } from './styles';
 
 function Users() {
   const { users, loading, updateUsers } = useStorage();

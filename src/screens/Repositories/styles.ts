@@ -1,6 +1,7 @@
 import { FlatList, FlatListProps } from 'react-native';
 import styled from 'styled-components/native';
-import { Repository } from '../../services/graphql/queries/getUserRepositories';
+
+import { Repository } from '~/services/graphql/queries';
 
 export const Container = styled.SafeAreaView`
   flex: 1;

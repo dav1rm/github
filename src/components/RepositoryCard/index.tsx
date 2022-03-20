@@ -2,8 +2,9 @@ import React from 'react';
 import { Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
-import ActionButton from '../ActionButton';
-import Tag from '../Tag';
+
+import { Repository } from '~/services/graphql/queries';
+import { ActionButton, Tag } from '..';
 import {
   Container,
   Title,
@@ -16,7 +17,6 @@ import {
   HeaderInfo,
   TagList,
 } from './styles';
-import { Repository } from '../../services/graphql/queries/getUserRepositories';
 
 interface RepositoryCardProps {
   repo: Repository;

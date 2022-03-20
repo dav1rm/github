@@ -1,14 +1,16 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Header from '../components/Header';
-import UsersScreen from '../screens/Users';
-import RepositoriesScreen from '../screens/Repositories';
-import AddUserScreen from '../screens/Login';
+import { Header } from '~/components';
+import {
+  UsersScreen,
+  RepositoriesScreen,
+  LoginScreen as AddUserScreen,
+} from '~/screens';
 
 const Stack = createNativeStackNavigator();
 
-export const AppRoutes = () => {
+const AppRoutes = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -29,3 +31,5 @@ export const AppRoutes = () => {
     </Stack.Navigator>
   );
 };
+
+export default AppRoutes;

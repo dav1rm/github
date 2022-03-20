@@ -1,6 +1,6 @@
 import { Platform } from 'react-native';
-import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import styled from 'styled-components/native';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 export const Container = styled.View`
   margin-top: ${Platform.OS === 'ios' ? getStatusBarHeight() : 0}px;

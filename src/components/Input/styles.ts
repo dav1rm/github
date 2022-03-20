@@ -1,6 +1,6 @@
+import { TextInput } from 'react-native';
 import styled, { css } from 'styled-components/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { TextInput } from 'react-native';
 
 interface ContainerProps {
   background?: string;
