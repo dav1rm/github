@@ -1,8 +1,9 @@
 import React from 'react';
+import { TouchableOpacityProps } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Container } from './styles';
 
-interface ActionButtonProps {
+interface ActionButtonProps extends TouchableOpacityProps {
   iconName: string;
   iconSize: number;
   iconColor?: string;
@@ -24,15 +25,18 @@ const ActionButton: React.FC<ActionButtonProps> = ({
   width,
   rounded = true,
   hasShadow,
+  ...rest
 }) => {
   return (
     <Container
+      activeOpacity={0.7}
       onPress={onPress}
       height={height}
       width={width}
       color={bgColor}
       rounded={rounded}
-      hasShadow={hasShadow}>
+      hasShadow={hasShadow}
+      {...rest}>
       <Icon name={iconName} size={iconSize} color={iconColor} />
     </Container>
   );

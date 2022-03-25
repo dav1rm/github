@@ -1,6 +1,7 @@
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import styled, { css } from 'styled-components/native';
 
-interface ContainerProps {
+interface ContainerProps extends TouchableOpacityProps {
   height?: number;
   width?: number;
   color?: string;
@@ -8,9 +9,7 @@ interface ContainerProps {
   hasShadow?: boolean;
 }
 
-export const Container = styled.TouchableOpacity.attrs({
-  activeOpacity: 0.7,
-})<ContainerProps>`
+export const Container = styled(TouchableOpacity)<ContainerProps>`
   width: ${({ width }) => width ?? 24}px;
   height: ${({ height }) => height ?? 24}px;
   align-items: center;

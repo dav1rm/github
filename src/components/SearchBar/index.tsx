@@ -29,10 +29,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
   return (
     <Container>
-      <BarContainer>
+      <BarContainer testID="search-container">
         {type === 'filter' && (
           <>
             <ActionButton
+              testID="searchButton"
               onPress={() => onChangeType('search')}
               iconName="search"
               height={40}
@@ -48,6 +49,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         )}
         <InputContainer>
           <Input
+            testID="searchInput"
             background="#fff"
             icon={type === 'search' ? 'search' : 'filter-list'}
             placeholder={placeholder}
@@ -62,6 +64,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           <>
             <Separator width={8} />
             <ActionButton
+              testID="filterButton"
               height={40}
               width={48}
               iconSize={24}
@@ -76,7 +79,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         )}
       </BarContainer>
       {type === 'filter' && (
-        <TagsContainer horizontal>
+        <TagsContainer horizontal testID="filterList">
           {['Front End', 'Java', 'C#'].map((tag: string) => (
             <Tag label={tag} key={tag} type="add" onPress={() => null} />
           ))}
