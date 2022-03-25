@@ -44,18 +44,36 @@ describe('Input Component', () => {
     expect(foundIcon).toBeFalsy();
   });
 
-  // it('should have light mode', () => {
-  //   const button = render(<Button onPress={mockFn} light label={title} />);
-  //   const { light } = button.container.props;
+  it('should have a border and not have a shadow', () => {
+    const { getByTestId } = render(
+      <Input onChangeText={onChangeText} placeholder={placeholder} />,
+    );
 
-  //   expect(light).toBeTruthy();
-  // });
+    const foundContainer = getByTestId('input-container');
 
-  // it('should be pressed', () => {
-  //   const button = render(<Button onPress={mockFn} label={title} />);
+    const styles = foundContainer.props.style[0];
 
-  //   fireEvent.press(button.container);
+    expect(styles).toHaveProperty('backgroundColor', 'transparent');
+    expect(styles).toHaveProperty('borderWidth', 1);
+    expect(styles).not.toHaveProperty('shadowOffset');
+  });
 
-  //   expect(mockFn).toBeCalled();
-  // });
+  it('should have a shadow, a backgroundColor and not have a border', () => {
+    const { getByTestId } = render(
+      <Input
+        onChangeText={onChangeText}
+        hasShadow
+        background="#fff"
+        placeholder={placeholder}
+      />,
+    );
+
+    const foundContainer = getByTestId('input-container');
+
+    const styles = foundContainer.props.style[0];
+
+    expect(styles).toHaveProperty('backgroundColor', '#fff');
+    expect(styles).toHaveProperty('borderWidth', 0);
+    expect(styles).toHaveProperty('shadowOffset');
+  });
 });
