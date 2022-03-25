@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import Button from '../../components/Button';
+
+import { Button } from '~/components';
 
 describe('Button Component', () => {
   const title = 'Button Title';
