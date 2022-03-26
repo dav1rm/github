@@ -16,7 +16,7 @@ describe('SearchBar Component', () => {
         value=""
       />,
     );
-    const foundInput = getByTestId('searchInput');
+    const foundInput = getByTestId('search-input');
 
     fireEvent(foundInput, 'focus');
     fireEvent.changeText(foundInput, newValue);
@@ -33,14 +33,11 @@ describe('SearchBar Component', () => {
         value=""
       />,
     );
-    const foundFilterButton = getByTestId('filterButton');
+    const foundFilterButton = getByTestId('filter-button');
 
     fireEvent.press(foundFilterButton);
 
     expect(onChangeType).toHaveBeenCalledWith('filter');
-
-    // const foundSearchInput = getByTestId('searchInput');
-    // expect(foundFilterButton).toBeFalsy();
   });
 
   it('should be rendered type search correctly', async () => {
@@ -53,10 +50,10 @@ describe('SearchBar Component', () => {
       />,
     );
 
-    const foundSearchInput = getByTestId('searchInput');
-    const foundFilterButton = getByTestId('filterButton');
-    const foundSearchButton = queryByTestId('searchButton');
-    const foundFilterList = queryByTestId('filterList');
+    const foundSearchInput = getByTestId('search-input');
+    const foundFilterButton = getByTestId('filter-button');
+    const foundSearchButton = queryByTestId('search-button');
+    const foundFilterList = queryByTestId('filter-list');
 
     expect(foundSearchInput.props.placeholder).toMatch('Buscar');
 
@@ -76,10 +73,10 @@ describe('SearchBar Component', () => {
       />,
     );
 
-    const foundSearchInput = getByTestId('searchInput');
-    const foundFilterButton = queryByTestId('filterButton');
-    const foundSearchButton = getByTestId('searchButton');
-    const foundFilterList = getByTestId('filterList');
+    const foundSearchInput = getByTestId('search-input');
+    const foundFilterButton = queryByTestId('filter-button');
+    const foundSearchButton = getByTestId('search-button');
+    const foundFilterList = getByTestId('filter-list');
 
     expect(foundSearchInput.props.placeholder).toMatch('Filtrar');
 
@@ -88,47 +85,4 @@ describe('SearchBar Component', () => {
     expect(foundSearchButton).toBeTruthy();
     expect(foundFilterList).toBeTruthy();
   });
-
-  // it('should dont have an icon inside', async () => {
-  //   const { queryByTestId } = render(
-  //     <Input onChangeText={onChangeText} placeholder={placeholder} value="" />,
-  //   );
-
-  //   const foundIcon = queryByTestId('input-icon');
-
-  //   expect(foundIcon).toBeFalsy();
-  // });
-
-  // it('should have a border and not have a shadow', () => {
-  //   const { getByTestId } = render(
-  //     <Input onChangeText={onChangeText} placeholder={placeholder} />,
-  //   );
-
-  //   const foundContainer = getByTestId('input-container');
-
-  //   const styles = foundContainer.props.style[0];
-
-  //   expect(styles).toHaveProperty('backgroundColor', 'transparent');
-  //   expect(styles).toHaveProperty('borderWidth', 1);
-  //   expect(styles).not.toHaveProperty('shadowOffset');
-  // });
-
-  // it('should have a shadow, a backgroundColor and not have a border', () => {
-  //   const { getByTestId } = render(
-  //     <Input
-  //       onChangeText={onChangeText}
-  //       hasShadow
-  //       background="#fff"
-  //       placeholder={placeholder}
-  //     />,
-  //   );
-
-  //   const foundContainer = getByTestId('input-container');
-
-  //   const styles = foundContainer.props.style[0];
-
-  //   expect(styles).toHaveProperty('backgroundColor', '#fff');
-  //   expect(styles).toHaveProperty('borderWidth', 0);
-  //   expect(styles).toHaveProperty('shadowOffset');
-  // });
 });
