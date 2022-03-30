@@ -53,15 +53,16 @@ function Login() {
         <Image source={logo} />
 
         <Form>
-          <Title>Buscar usuário</Title>
+          <Title testID='title'>Buscar usuário</Title>
 
           <Separator height={10} />
 
-          <Description>{description}</Description>
+          <Description testID='description'>{description}</Description>
 
           <Separator height={32} />
 
           <Input
+            testID='username'
             icon="account-circle"
             value={username}
             onChangeText={text => setUsername(text)}
@@ -73,6 +74,7 @@ function Login() {
           <Separator height={24} />
 
           <Button
+            testID='submit'
             label={loading ? 'Loading' : 'Cadastrar'}
             onPress={handleSearchUser}
           />

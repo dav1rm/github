@@ -1,12 +1,11 @@
+import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 
 interface ContainerProps {
   height?: number;
   light?: boolean;
 }
-export const Container = styled.TouchableOpacity.attrs({
-  activeOpacity: 0.7,
-})<ContainerProps>`
+export const Container = styled(TouchableOpacity)<ContainerProps>`
   height: ${({ height }) => height ?? 40}px;
   border-radius: 100px;
   background: ${({ light }) => (light ? '#fff' : '#000')};
