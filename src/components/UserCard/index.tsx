@@ -20,12 +20,14 @@ interface UserCardProps {
   user: User;
   onPress: () => void;
   onDeletePress: () => void;
+  testID?: string;
 }
 
 const UserCard: React.FC<UserCardProps> = ({
   user,
   onPress,
   onDeletePress,
+  testID,
 }) => {
   const footerInfos = [
     {
@@ -43,7 +45,7 @@ const UserCard: React.FC<UserCardProps> = ({
   ];
 
   return (
-    <Container onPress={onPress}>
+    <Container testID={testID} onPress={onPress}>
       <Header>
         <Avatar source={{ uri: user.avatarUrl }} />
         <HeaderContent>
@@ -54,6 +56,7 @@ const UserCard: React.FC<UserCardProps> = ({
           <Description>{user.login}</Description>
         </HeaderContent>
         <ActionButton
+          testID={`remove-${testID}`}
           onPress={onDeletePress}
           iconName="delete"
           iconSize={18}

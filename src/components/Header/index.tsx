@@ -25,6 +25,7 @@ const Header: React.FC<NativeStackHeaderProps> = ({
         <Left>
           {back && (
             <ActionButton
+              testID='header-back'
               onPress={navigation.goBack}
               iconName="arrow-back"
               iconSize={30}

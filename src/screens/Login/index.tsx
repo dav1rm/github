@@ -75,7 +75,7 @@ function Login() {
 
           <Button
             testID='submit'
-            label={loading ? 'Loading' : 'Cadastrar'}
+            label={loading ? 'Carregando...' : 'Cadastrar'}
             onPress={handleSearchUser}
           />
         </Form>

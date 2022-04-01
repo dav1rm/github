@@ -31,8 +31,9 @@ function Users() {
         data={users}
         keyExtractor={(item, index) => `${item.id}_${index}`}
         ItemSeparatorComponent={() => <Separator height={8} />}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <UserCard
+            testID={`user-${index+1}`}
             user={item}
             onPress={() => handleOpenRepositories(item)}
             onDeletePress={() => handleRemoveUser(item.id)}
